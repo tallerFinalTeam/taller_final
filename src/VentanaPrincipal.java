@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaPrincipal extends JFrame {
 
     private JTextField campoTitulo, campoAutor, campoIsbn, campoGenero, campoAnio, campoCopias;
+    private JTable tablaLibros;
+    private DefaultTableModel modeloTabla;
 
     public VentanaPrincipal() {
         setTitle("Sistema de gestion de biblioteca");
@@ -37,6 +40,30 @@ public class VentanaPrincipal extends JFrame {
         panelFormulario.add(new JLabel("Copias disponibles:"));
         campoCopias = new JTextField();
         panelFormulario.add(campoCopias);
+
+
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new FlowLayout());
+
+        JButton btnAgregar = new JButton("Agregar libro");
+        JButton btnMostrarTodos = new JButton("Mostrar todos");
+        JButton btnFiltrarAutor = new JButton("Filtrar por autor");
+        JButton btnEliminar = new JButton("Eliminar libro");
+
+        panelBotones.add(btnAgregar);
+        panelBotones.add(btnMostrarTodos);
+        panelBotones.add(btnFiltrarAutor);
+        panelBotones.add(btnEliminar);
+
+
+        String[] columnas = {"Título", "Autor", "ISBN", "Género", "Año", "Copias"};
+        modeloTabla = new DefaultTableModel(columnas, 0);
+        tablaLibros = new JTable(modeloTabla);
+
+        JScrollPane scrollTabla = new JScrollPane(tablaLibros);
+        add(scrollTabla, BorderLayout.CENTER);
+
+        add(panelBotones, BorderLayout.SOUTH);
 
         add(panelFormulario, BorderLayout.NORTH);
 
