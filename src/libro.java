@@ -1,17 +1,13 @@
-public class libro {
+public class libro extends MaterialBibliografico {
 
-    private String titulo;
-    private String autor;
+
     private String categoriaLibro;
     private int codigo;
-    private int anoPublicacion;
     private int copiasDisponibles;
 
     public libro(String titulo, String autor, String categoriaLibro, int codigo, int anoPublicacion, int copiasDisponibles) {
-        this.titulo = titulo;
+
         this.codigo = codigo;
-        this.autor = autor;
-        this.anoPublicacion = anoPublicacion;
         this.categoriaLibro = categoriaLibro;
         this.copiasDisponibles = copiasDisponibles;
     }
@@ -24,6 +20,7 @@ public class libro {
                 ", Año: " + anoPublicacion +
                 ", Copias disponibles: " + copiasDisponibles;
     }
+
 
     public String getTitulo() {
         return titulo;
