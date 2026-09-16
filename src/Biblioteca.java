@@ -3,8 +3,8 @@ import java.util.HashMap;
 
 public class Biblioteca {
 
-    private ArrayList<Libro> listaLibros;
-    private HashMap<String, ArrayList<Libro>> indicePorAutor;
+    private ArrayList<libro> listaLibros;
+    private HashMap<String, ArrayList<libro>> indicePorAutor;
 
     public Biblioteca() {
         this.listaLibros = new ArrayList<>();
@@ -12,22 +12,21 @@ public class Biblioteca {
     }
 
 
-    public boolean existeIsbn(String isbn) {
-        for (Libro libro : listaLibros) {
-            if (libro.getIsbn().equalsIgnoreCase(isbn)) {
+    public boolean existeCodigo(int codigo) {
+        for (libro libro : listaLibros) {
+            if (libro.getCodigo() == codigo) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean agregarLibro(Libro libro) {
-        if (existeIsbn(libro.getIsbn())) {
+    public boolean agregarLibro(libro libro) {
+        if (existeCodigo(libro.getCodigo())) {
             return false;
         }
 
         listaLibros.add(libro);
-
 
         String autor = libro.getAutor();
         if (!indicePorAutor.containsKey(autor)) {
@@ -38,11 +37,13 @@ public class Biblioteca {
         return true;
     }
 
-    public ArrayList<Libro> obtenerTodos() {
+    public ArrayList<libro> obtenerTodos() {
+
         return this.listaLibros;
     }
 
-    public ArrayList<Libro> filtrarPorAutor(String autor) {
+
+    public ArrayList<libro> filtrarPorAutor(String autor) {
         if (autor == null || autor.trim().isEmpty()) {
             return obtenerTodos();
         }
@@ -51,25 +52,23 @@ public class Biblioteca {
     }
 
 
-    public boolean eliminarLibro(String isbn) {
-        Libro libroAEliminar = null;
+    public boolean eliminarLibro(int codigo) {
+        libro libroAEliminar = null;
 
 
-        for (Libro l : listaLibros) {
-            if (l.getIsbn().equalsIgnoreCase(isbn)) {
+        for (libro l : listaLibros) {
+            if (l.getCodigo() == codigo ) {
                 libroAEliminar = l;
                 break;
             }
         }
-
         if (libroAEliminar != null) {
             listaLibros.remove(libroAEliminar);
-
 
             String autor = libroAEliminar.getAutor();
             if (indicePorAutor.containsKey(autor)) {
                 indicePorAutor.get(autor).remove(libroAEliminar);
-              
+
                 if (indicePorAutor.get(autor).isEmpty()) {
                     indicePorAutor.remove(autor);
                 }
