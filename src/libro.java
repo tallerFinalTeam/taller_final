@@ -6,13 +6,13 @@ public class libro extends MaterialBibliografico {
     private int copiasDisponibles;
 
     public libro(String titulo, String autor, String categoriaLibro, int codigo, int anoPublicacion, int copiasDisponibles) {
-
+        super(titulo, autor, anoPublicacion);
         this.codigo = codigo;
         this.categoriaLibro = categoriaLibro;
         this.copiasDisponibles = copiasDisponibles;
     }
     @Override
-    public String toString() {
+    public String mostrarInformacion() {
         return "Título: " + titulo +
                 ", Autor: " + autor +
                 ", Categoría: " + categoriaLibro +
@@ -20,22 +20,9 @@ public class libro extends MaterialBibliografico {
                 ", Año: " + anoPublicacion +
                 ", Copias disponibles: " + copiasDisponibles;
     }
-
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
+    @Override
+    public String toString(){
+        return mostrarInformacion();
     }
 
     public String getCategoriaLibro() {
@@ -52,14 +39,6 @@ public class libro extends MaterialBibliografico {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public int getAnoPublicacion() {
-        return anoPublicacion;
-    }
-
-    public void setAnoPublicacion(int anoPublicacion) {
-        this.anoPublicacion = anoPublicacion;
     }
 
     public int getCopiasDisponibles() {
